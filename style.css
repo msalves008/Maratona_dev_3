@@ -1,0 +1,65 @@
+/* ALINHAMENTOS, ESPAÇAMENTOS LARGURAS E ALTURAS*/
+html, body{
+    margin: 0;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header button{
+padding:8px 16px ;
+border-radius: 4px ;
+}
+
+header, main, footer{
+    text-align: center;
+}
+
+.form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 45px;
+}
+
+form input, form button{
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin-bottom: 4px;
+    padding: 8px 16px;
+    border-radius: 4px;
+
+    border: 1px;
+    
+}
+
+header, .form, main{
+    margin: 0 auto 70px;
+    /*Limites dos elementos da pag. */
+    width: 90%;
+    max-width: 500px;
+   
+}
+header h1, main h2{
+    margin-bottom: 70px;
+}
+.form h2{
+    text-align: right;  
+
+}
+
+.donors{
+    display: grid;
+    /*define o layout como grade de colunas, (1fr fala pro navegador dividir o espaço disponivel pela quantidade de itens )*/
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+footer{
+    margin-top: auto; 
+    padding-bottom: 16px;
+    border:  1px solid #eee;
+}
