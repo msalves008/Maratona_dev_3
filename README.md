@@ -2,7 +2,7 @@
 
 Este projeto foi desenvolvido durante a MaratonaDev_3 da RokectSet
 
-om a proposta de desenvolver uma aplicação web totalmente do zero utilizando técnologias em alta no mercado em apenas dois dias. 
+Com a proposta de desenvolver uma aplicação web totalmente do zero utilizando técnologias em alta no mercado em apenas dois dias. 
 
 ### Arquitetura
 Devido a aplicação ser extremamente simples, uma aplicação de apenas uma página, sua arquitetura é muito simples, com o **Frontend**
