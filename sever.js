@@ -1,5 +1,5 @@
-const express =  require("express")
-const server =  express()
+const express = require("express")
+const server = express()
 
 //configuando template engine
 const nunjucks = require("nunjucks")
@@ -7,6 +7,8 @@ nunjucks.configure("./",{
     express: server,
     noCache: true,    
 })
+
+/*momento video 01:43*/
 
 //CONFIGURANDO ARQUIVOS EXTRAS (Estaticos)
 //Ex: CSS: JS : logo
@@ -27,16 +29,21 @@ const db = new Pool({
 
 //chamando index.html
 server.get("/", function(req, res){
-    const donors = []
-    return res.render("index.html",{donors})
+    db.query("SELECT * FROM donors", function(err, result){
+        if(err) return res.send("Erro de banco de dados")
+        const donors = result.rows
+        return res.render("index.html",{donors})
+
+    })
 })
 
  //pegando dados do formulário
  server.post("/", function(req, res){
    
     const name = req.body.name
-    const email = req.body.email
-    const blood = req.body.blood
+const blood = req.body.blood    
+const email = req.body.email
+    
 
     //verificando se os campos foram preenchidos
     if(name == "" || email == "" || blood == ""){
@@ -44,14 +51,16 @@ server.get("/", function(req, res){
     }
 
     //colocando valores dentro do banco de dados
-    const query = `INSERT INTO "public"."donors" ("name","email","blood") VALUES ($1, $2, $3)`     
+    
+    const query = `INSERT INTO donors ("name","email","blood") VALUES ($1, $2, $3);`   
+    /*const query = 'INSERT INTO donors ("name","email","blood") VALUES (name,email, blood);'*/     
 
     const valores = [name, email, blood]
     
     db.query(query, valores, function(err){
         //caso der erro
         if(err) {
-            return res.send("Erro no Banco de Dados.")
+            return res.send("Erro no Banco de Dados." + query)
         }
         //se estiver ok
         else{
